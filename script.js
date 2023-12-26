@@ -9,18 +9,25 @@ const scoreCounter = document.querySelector('.score');
 const errorCounter = document.querySelector('.error');
 const levelBar = document.querySelector('.levelbar');
 const currentScoreBar = document.querySelector('.currentscorebar');
+const roundEndingWindow = document.querySelector('.roundending');
 let scoreCount = 0;
-let errorCount = 0;
+// let errorCount = 0;
+let circleCount = 0;
 let circleLongevity = 1000;
+let circleQuantity = 5;
 const intervalValue = 2000;
 
 coverUp.addEventListener('click', () => {
     localStorage.setItem("level", 1);
+    localStorage.setItem("score", 0);
     animateOpenScreen();
 }, { once: true });
 
 coverDown.addEventListener('click', () => {
     animateOpenScreen();
+    scoreCount = Number(localStorage.getItem("score"));
+    levelBar.textContent = `Level: ${localStorage.getItem("level")}`;
+    currentScoreBar.textContent = `Total Score: ${scoreCount}`;
 }, { once: true });
 
 function animateOpenScreen() {
@@ -41,8 +48,10 @@ function getRandomInt(n) {
 }
 
 function createCircle(container = field) {
+    const delay = 1000;
     const currentScore = scoreCount;
     const circle = document.createElement('div');
+    circleCount++;
     circle.classList.add('circle');
     container.appendChild(circle);
     circle.style.width = `${getRandomInt(7) + 1}vw`;
@@ -62,6 +71,15 @@ function createCircle(container = field) {
     });
     observer.observe(field, { subtree: false, childList: true });
     setTimeout(deleteElement, circleLongevity, circle);
+    if (circleCount === circleQuantity) {
+        setTimeout(ending, circleLongevity + delay);
+    }
+}
+
+function ending() {
+    removeFieldListener();
+    roundEndingWindow.style.display = 'block';
+    localStorage.setItem("score", scoreCount);
 }
 
 function increaseScore(n = 1) {
@@ -80,26 +98,34 @@ function deleteElement(element) {
 }
 
 function startGame() {
-    let currentLevel = localStorage.getItem("level") ?? 1;
+    let currentLevel = localStorage?.getItem("level") ?? 1;
     const { level, quantity, interval, longevity } = levelInitialization(currentLevel);
     console.log(currentLevel);
     currentLevel++;
     localStorage.setItem("level", currentLevel);
     levelBar.textContent = `Level: ${level}`;
     circleLongevity = longevity;
+    circleQuantity = quantity;
+    circleCount = 0;
     setIntervalX(createCircle, interval, quantity);
 }
 
 function addFieldListener() {
-    field.addEventListener('click', (e) => {
-        if (e.target.classList.contains('circle')) {
-            increaseScore();
-            e.target.remove();
-        } else {
-            // increaseError();
-            increaseScore(-2);
-        }
-    });
+    field.addEventListener('click', checkClick);
+}
+
+function removeFieldListener() {
+    field.removeEventListener('click', checkClick);
+}
+
+function checkClick(e) {
+    if (e.target.classList.contains('circle')) {
+        increaseScore();
+        e.target.remove();
+    } else {
+        // increaseError();
+        increaseScore(-2);
+    }
 }
 
 function levelInitialization(levelToInit) {
