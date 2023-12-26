@@ -8,6 +8,7 @@ let errorCount = 0;
 const intervalValue = 2000;
 
 coverUp.addEventListener('click', () => {
+    localStorage.setItem("level", 1);
     animateOpenScreen();
 }, { once: true });
 
@@ -69,6 +70,10 @@ function deleteElement(element) {
 }
 
 function startGame() {
+    let currentLevel = localStorage.getItem("level") ?? 1;
+    console.log(currentLevel);
+    currentLevel++;
+    localStorage.setItem("level", currentLevel);
     setInterval(createCircle, intervalValue);
 }
 
