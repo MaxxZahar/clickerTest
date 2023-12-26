@@ -72,18 +72,25 @@
     text-align: center;
 }
 
-.levelbar {
+.bar {
     position: absolute;
     font-family: 'Caveat', cursive;
     background-image: linear-gradient(90deg, var(--open-screen-background-start), var(--open-screen-background-end));
     color: var(--open-screen-text-color);
     width: 15vw;
-    top: 10vh;
     left: 80vw;
     font-weight: bold;
     font-size: 5vh;
     padding: 0.5vw 1vw;
     outline: 3px solid var(--open-screen-text-color);
+}
+
+.levelbar {
+    top: 10vh;
+}
+
+.currentscorebar {
+    top: 25vh;
 }
 
 .score {

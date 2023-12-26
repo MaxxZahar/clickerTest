@@ -8,6 +8,7 @@ const coverDown = document.querySelector('.down');
 const scoreCounter = document.querySelector('.score');
 const errorCounter = document.querySelector('.error');
 const levelBar = document.querySelector('.levelbar');
+const currentScoreBar = document.querySelector('.currentscorebar');
 let scoreCount = 0;
 let errorCount = 0;
 let circleLongevity = 1000;
@@ -52,7 +53,8 @@ function createCircle(container = field) {
         mutations_list.forEach(function (mutation) {
             mutation.removedNodes.forEach(function (removedNode) {
                 if (removedNode === circle && currentScore === scoreCount) {
-                    increaseError();
+                    // increaseError();
+                    increaseScore(-1);
                     observer.disconnect();
                 }
             });
@@ -64,7 +66,8 @@ function createCircle(container = field) {
 
 function increaseScore(n = 1) {
     scoreCount += n;
-    scoreCounter.textContent = scoreCount;
+    // scoreCounter.textContent = scoreCount;
+    currentScoreBar.textContent = `Total Score: ${scoreCount}`;
 }
 
 function increaseError(n = 1) {
@@ -93,7 +96,8 @@ function addFieldListener() {
             increaseScore();
             e.target.remove();
         } else {
-            increaseError(2);
+            // increaseError();
+            increaseScore(-2);
         }
     });
 }
