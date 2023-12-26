@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
+
+:root {
+    --field-height: 100dvh;
+    --field-width: 100dvw;
+    --open-screen-text-color: orange;
+    --open-screen-background-start: rgb(119, 5, 5);
+    --open-screen-background-end: rgb(63, 2, 2);
+    --button-font-size: 2rem;
+    --open-screen-animation-time: 3000ms;
+}
+
+.field {
+    border: 5px solid var(--open-screen-text-color);
+    height: var(--field-height);
+    position: relative;
+}
+
+.cover {
+    height: calc(var(--field-height) / 2);
+    position: absolute;
+    z-index: 1;
+    background-image: linear-gradient(90deg, var(--open-screen-background-start), var(--open-screen-background-end));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.up {
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+.moveup {
+    animation: moveup var(--open-screen-animation-time) ease-in forwards;
+}
+
+.down {
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.movedown {
+    animation: movedown var(--open-screen-animation-time) ease-in forwards;
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    background-color: brown;
+    width: 4rem;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    animation: scaling 2s linear;
+}
+
+.counter {
+    position: absolute;
+    width: fit-content;
+    min-width: 5vh;
+    padding: 0.5vw 1vw;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 3vh;
+    border: 1px solid black;
+    left: 85vw;
+    color: black;
+    text-align: center;
+}
+
+.score {
+    background-color: cyan;
+    top: 10vh;
+}
+
+.error {
+    background-color: pink;
+    top: 25vh;
+}
+
+.button {
+    position: relative;
+    text-transform: uppercase;
+    line-height: var(--button-font-size);
+    font-size: var(--button-font-size);
+    color: var(--open-screen-text-color);
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Caveat', cursive;
+    letter-spacing: 0.3rem;
+}
+
+.button::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    background-color: var(--open-screen-text-color);
+    height: 2px;
+    top: var(--button-font-size);
+}
+
+@keyframes scaling {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.25);
+    }
+
+    50% {
+        transform: scale(0.75);
+    }
+
+    75% {
+        transform: scale(0.25);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes moveup {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: calc(-3 * var(--field-height) / 4);
+    }
+}
+
+@keyframes movedown {
+    from {
+        bottom: 0;
+    }
+
+    to {
+        bottom: calc(-3 * var(--field-height) / 4);
+    }
+}
