@@ -1,10 +1,16 @@
+import levels from "./levels.js";
+
+console.log(levels);
+
 const field = document.querySelector('.field');
 const coverUp = document.querySelector('.up');
 const coverDown = document.querySelector('.down');
 const scoreCounter = document.querySelector('.score');
 const errorCounter = document.querySelector('.error');
+const levelBar = document.querySelector('.levelbar');
 let scoreCount = 0;
 let errorCount = 0;
+let circleLongevity = 1000;
 const intervalValue = 2000;
 
 coverUp.addEventListener('click', () => {
@@ -41,6 +47,7 @@ function createCircle(container = field) {
     circle.style.width = `${getRandomInt(7) + 1}vw`;
     circle.style.top = `${getRandomInt(70)}vh`;
     circle.style.left = `${getRandomInt(70)}vw`;
+    circle.style.animationDuration = `${circleLongevity}ms`;
     const observer = new MutationObserver(function (mutations_list) {
         mutations_list.forEach(function (mutation) {
             mutation.removedNodes.forEach(function (removedNode) {
@@ -52,7 +59,7 @@ function createCircle(container = field) {
         });
     });
     observer.observe(field, { subtree: false, childList: true });
-    setTimeout(deleteElement, intervalValue, circle);
+    setTimeout(deleteElement, circleLongevity, circle);
 }
 
 function increaseScore(n = 1) {
@@ -71,10 +78,13 @@ function deleteElement(element) {
 
 function startGame() {
     let currentLevel = localStorage.getItem("level") ?? 1;
+    const { level, quantity, interval, longevity } = levelInitialization(currentLevel);
     console.log(currentLevel);
     currentLevel++;
     localStorage.setItem("level", currentLevel);
-    setInterval(createCircle, intervalValue);
+    levelBar.textContent = `Level: ${level}`;
+    circleLongevity = longevity;
+    setIntervalX(createCircle, interval, quantity);
 }
 
 function addFieldListener() {
@@ -88,5 +98,19 @@ function addFieldListener() {
     });
 }
 
+function levelInitialization(levelToInit) {
+    return levels.filter(level => level.level == levelToInit)[0];
+}
 
+function setIntervalX(callback, delay, repetitions) {
+    var x = 0;
+    var intervalID = window.setInterval(function () {
+
+        callback();
+
+        if (++x === repetitions) {
+            window.clearInterval(intervalID);
+        }
+    }, delay);
+}
 
