@@ -125,6 +125,34 @@
     top: var(--button-font-size);
 }
 
+.roundending {
+    display: none;
+    margin: 10rem auto 0;
+    background-image: linear-gradient(90deg, var(--open-screen-background-start), var(--open-screen-background-end));
+    width: 20%;
+    border: 5px solid var(--open-screen-text-color);
+}
+
+.option {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    color: var(--open-screen-text-color);
+    font-family: 'Caveat', cursive;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.option:first-child {
+    margin-bottom: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+}
+
+.option:last-child {
+    padding-bottom: 1.5rem;
+    padding-top: 0;
+}
+
 @keyframes scaling {
     0% {
         transform: scale(1);
