@@ -93,6 +93,10 @@
     top: 25vh;
 }
 
+.recordbar {
+    top: 40vh;
+}
+
 .score {
     background-color: cyan;
     top: 50vh;
@@ -155,6 +159,8 @@
 
 .endscreen {
     display: none;
+    flex-direction: column;
+    justify-content: space-around;
     background-image: linear-gradient(90deg, var(--open-screen-background-start), var(--open-screen-background-end));
     width: 20%;
     border: 5px solid var(--open-screen-text-color);
@@ -167,6 +173,10 @@
     font-size: 4vh;
     padding: 1rem;
     font-weight: bold;
+}
+
+.endscore:first-child {
+    align-self: center;
 }
 
 @keyframes scaling {

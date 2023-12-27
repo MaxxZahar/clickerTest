@@ -9,6 +9,7 @@ const scoreCounter = document.querySelector('.score');
 const errorCounter = document.querySelector('.error');
 const levelBar = document.querySelector('.levelbar');
 const currentScoreBar = document.querySelector('.currentscorebar');
+const recordBar = document.querySelector('.recordbar');
 const roundEndingWindow = document.querySelector('.roundending');
 const quitButton = document.querySelector('.quit');
 const continueButton = document.querySelector('.con');
@@ -94,7 +95,7 @@ function ending() {
     removeFieldListener();
     let currentLevel = localStorage.getItem("level");
     if (currentLevel == numberOfRounds) {
-        endScreen.style.display = 'block';
+        endScreen.style.display = 'flex';
         localStorage.setItem("score", 0);
         localStorage.setItem("level", 1);
         localStorage.setItem("latestScore", scoreCount);
@@ -133,8 +134,10 @@ function deleteElement(element) {
 
 function startGame() {
     let currentLevel = localStorage?.getItem("level") ?? 1;
+    let recordScore = localStorage?.getItem("recordScore") ?? 0;
     const { level, quantity, interval, longevity } = levelInitialization(currentLevel);
     levelBar.textContent = `Level: ${level}`;
+    recordBar.textContent = `Highest Score: ${recordScore}`;
     circleLongevity = longevity;
     circleQuantity = quantity;
     circleCount = 0;
