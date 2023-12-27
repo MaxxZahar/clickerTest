@@ -12,6 +12,8 @@ const currentScoreBar = document.querySelector('.currentscorebar');
 const roundEndingWindow = document.querySelector('.roundending');
 const quitButton = document.querySelector('.quit');
 const continueButton = document.querySelector('.con');
+const endScreen = document.querySelector('.endscreen');
+const numberOfRounds = levels.length;
 let scoreCount = 0;
 // let errorCount = 0;
 let circleCount = 0;
@@ -88,12 +90,30 @@ function createCircle(container = field) {
 }
 
 function ending() {
+    const endOfGameDelay = 5000;
     removeFieldListener();
-    roundEndingWindow.style.display = 'block';
-    localStorage.setItem("score", scoreCount);
     let currentLevel = localStorage.getItem("level");
-    currentLevel++;
-    localStorage.setItem("level", currentLevel);
+    if (currentLevel == numberOfRounds) {
+        endScreen.style.display = 'block';
+        localStorage.setItem("score", 0);
+        localStorage.setItem("level", 1);
+        localStorage.setItem("latestScore", scoreCount);
+        const recordScore = Number(localStorage.getItem("recordScore")) ?? 0;
+        endScreen.children[1].textContent = `Your score: ${scoreCount}`;
+        endScreen.children[2].textContent = `Record score: ${recordScore}`;
+        if (scoreCount > recordScore) {
+            localStorage.setItem("recordScore", scoreCount);
+        }
+        setTimeout(() => {
+            endScreen.style.display = 'none';
+            location.reload();
+        }, endOfGameDelay);
+    } else {
+        currentLevel++;
+        roundEndingWindow.style.display = 'block';
+        localStorage.setItem("score", scoreCount);
+        localStorage.setItem("level", currentLevel);
+    }
 }
 
 function increaseScore(n = 1) {
@@ -102,10 +122,10 @@ function increaseScore(n = 1) {
     currentScoreBar.textContent = `Total Score: ${scoreCount}`;
 }
 
-function increaseError(n = 1) {
-    errorCount += n;
-    errorCounter.textContent = errorCount;
-}
+// function increaseError(n = 1) {
+//     errorCount += n;
+//     errorCounter.textContent = errorCount;
+// }
 
 function deleteElement(element) {
     element.remove();
