@@ -11,6 +11,7 @@ const levelBar = document.querySelector('.levelbar');
 const currentScoreBar = document.querySelector('.currentscorebar');
 const roundEndingWindow = document.querySelector('.roundending');
 const quitButton = document.querySelector('.quit');
+const continueButton = document.querySelector('.con');
 let scoreCount = 0;
 // let errorCount = 0;
 let circleCount = 0;
@@ -35,6 +36,11 @@ quitButton.addEventListener('click', () => {
     location.reload();
 });
 
+continueButton.addEventListener('click', () => {
+    roundEndingWindow.style.display = 'none';
+    startNextRound();
+})
+
 function animateOpenScreen() {
     coverUp.classList.add('moveup');
     coverDown.classList.add('movedown');
@@ -43,8 +49,7 @@ function animateOpenScreen() {
     setTimeout(() => {
         coverUp.remove();
         coverDown.remove();
-        addFieldListener();
-        startGame();
+        startNextRound();
     }, animationTime);
 }
 
@@ -147,5 +152,10 @@ function setIntervalX(callback, delay, repetitions) {
             window.clearInterval(intervalID);
         }
     }, delay);
+}
+
+function startNextRound() {
+    addFieldListener();
+    startGame();
 }
 
