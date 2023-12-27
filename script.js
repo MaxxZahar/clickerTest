@@ -37,8 +37,9 @@ quitButton.addEventListener('click', () => {
 });
 
 continueButton.addEventListener('click', () => {
+    const nextRoundDelay = 500;
     roundEndingWindow.style.display = 'none';
-    startNextRound();
+    setTimeout(startNextRound, nextRoundDelay);
 })
 
 function animateOpenScreen() {
