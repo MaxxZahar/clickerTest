@@ -85,6 +85,9 @@ function ending() {
     removeFieldListener();
     roundEndingWindow.style.display = 'block';
     localStorage.setItem("score", scoreCount);
+    let currentLevel = localStorage.getItem("level");
+    currentLevel++;
+    localStorage.setItem("level", currentLevel);
 }
 
 function increaseScore(n = 1) {
@@ -105,9 +108,6 @@ function deleteElement(element) {
 function startGame() {
     let currentLevel = localStorage?.getItem("level") ?? 1;
     const { level, quantity, interval, longevity } = levelInitialization(currentLevel);
-    console.log(currentLevel);
-    currentLevel++;
-    localStorage.setItem("level", currentLevel);
     levelBar.textContent = `Level: ${level}`;
     circleLongevity = longevity;
     circleQuantity = quantity;
