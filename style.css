@@ -80,7 +80,7 @@
     width: 15vw;
     left: 80vw;
     font-weight: bold;
-    font-size: 5vh;
+    font-size: 4vh;
     padding: 0.5vw 1vw;
     outline: 3px solid var(--open-screen-text-color);
 }

@@ -10,6 +10,7 @@ const errorCounter = document.querySelector('.error');
 const levelBar = document.querySelector('.levelbar');
 const currentScoreBar = document.querySelector('.currentscorebar');
 const roundEndingWindow = document.querySelector('.roundending');
+const quitButton = document.querySelector('.quit');
 let scoreCount = 0;
 // let errorCount = 0;
 let circleCount = 0;
@@ -29,6 +30,10 @@ coverDown.addEventListener('click', () => {
     levelBar.textContent = `Level: ${localStorage.getItem("level")}`;
     currentScoreBar.textContent = `Total Score: ${scoreCount}`;
 }, { once: true });
+
+quitButton.addEventListener('click', () => {
+    location.reload();
+});
 
 function animateOpenScreen() {
     coverUp.classList.add('moveup');
