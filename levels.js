@@ -25,6 +25,24 @@ const levels = [{
     quantity: 2,
     interval: 6000,
     longevity: 1250
+},
+{
+    level: 6,
+    quantity: 10,
+    interval: 750,
+    longevity: 2000
+},
+{
+    level: 7,
+    quantity: 7,
+    interval: 1250,
+    longevity: 1250
+},
+{
+    level: 8,
+    quantity: 10,
+    interval: 500,
+    longevity: 1500
 }
 ];
 
