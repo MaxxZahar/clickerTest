@@ -94,29 +94,42 @@
     text-align: center;
 }
 
-.bar {
+.bar-container {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 15vw;
+    outline: 5px solid var(--open-screen-text-color);
+    top: 0;
+    right: 0;
+    height: var(--field-height);
+    justify-content: space-around;
+}
+
+.bar {
+    /* position: absolute; */
     font-family: 'Caveat', cursive;
     background-image: linear-gradient(90deg, var(--open-screen-background-start), var(--open-screen-background-end));
     color: var(--open-screen-text-color);
-    width: 12vw;
-    left: 80vw;
+    /* width: 12vw; */
+    /* left: 80vw; */
     font-weight: bold;
     font-size: 4vh;
     padding: 0.5vw 1vw;
-    outline: 5px solid var(--open-screen-text-color);
+    flex-grow: 1;
+    /* outline: 5px solid var(--open-screen-text-color); */
 }
 
 .levelbar {
-    top: 10vh;
+    /* top: 10vh; */
 }
 
 .currentscorebar {
-    top: 25vh;
+    /* top: 25vh; */
 }
 
 .recordbar {
-    top: 40vh;
+    /* top: 40vh; */
 }
 
 .score {
