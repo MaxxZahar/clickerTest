@@ -1,6 +1,6 @@
-import levels from "./levels.js";
+import levels, { rarities } from "./levels.js";
 
-console.log(levels);
+console.log(rarities);
 
 const field = document.querySelector('.field');
 const coverUp = document.querySelector('.up');
@@ -72,6 +72,7 @@ function createCircle(container = field) {
     circle.style.top = `${getRandomInt(70)}vh`;
     circle.style.left = `${getRandomInt(70)}vw`;
     circle.style.animationDuration = `${circleLongevity}ms`;
+    applyRarity(circle);
     const observer = new MutationObserver(function (mutations_list) {
         mutations_list.forEach(function (mutation) {
             mutation.removedNodes.forEach(function (removedNode) {
@@ -154,7 +155,7 @@ function removeFieldListener() {
 
 function checkClick(e) {
     if (e.target.classList.contains('circle')) {
-        increaseScore();
+        increaseScore(countPointsWithRarity(e.target));
         e.target.remove();
     } else {
         // increaseError();
@@ -183,3 +184,39 @@ function startNextRound() {
     startGame();
 }
 
+function applyRarity(circle) {
+    const choice = getRandomInt(100);
+    if (choice < 70) {
+        circle.classList.add("common");
+    }
+    if (choice >= 70 && choice < 88) {
+        circle.classList.add("uncommon");
+    }
+    if (choice >= 88 && choice < 96) {
+        circle.classList.add("rare");
+    }
+    if (choice >= 96 && choice < 99) {
+        circle.classList.add("veryrare");
+    }
+    if (choice === 99) {
+        circle.classList.add("legendary");
+    }
+}
+
+function countPointsWithRarity(circle) {
+    switch (circle.classList[1]) {
+        case "common":
+            return 1;
+        case "uncommon":
+            return 2;
+        case "rare":
+            return 3;
+        case "veryrare":
+            return 4;
+        case "legendary":
+            return 7;
+        default:
+            console.log("Rarity error");
+            return 0;
+    }
+}

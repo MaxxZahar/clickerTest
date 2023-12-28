@@ -51,11 +51,32 @@
     top: 0;
     left: 0;
     border-radius: 50%;
-    background-color: brown;
+    /* background-color: brown; */
+    background-image: radial-gradient(var(--open-screen-background-start), var(--open-screen-background-end));
     width: 4rem;
     aspect-ratio: 1 / 1;
     cursor: pointer;
     animation: scaling 2s linear;
+}
+
+.common {
+    background-image: radial-gradient(var(--open-screen-background-start), var(--open-screen-background-end));
+}
+
+.uncommon {
+    background-image: radial-gradient(cyan, navy);
+}
+
+.rare {
+    background-image: radial-gradient(pink, magenta);
+}
+
+.veryrare {
+    background-image: radial-gradient(yellow, orange);
+}
+
+.legendary {
+    background-image: radial-gradient(lime, rgb(9, 88, 9));
 }
 
 .counter {
