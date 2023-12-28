@@ -14,6 +14,7 @@
     border: 5px solid var(--open-screen-text-color);
     height: var(--field-height);
     position: relative;
+    background-color: blanchedalmond;
 }
 
 .cover {
@@ -103,7 +104,7 @@
     font-weight: bold;
     font-size: 4vh;
     padding: 0.5vw 1vw;
-    outline: 3px solid var(--open-screen-text-color);
+    outline: 5px solid var(--open-screen-text-color);
 }
 
 .levelbar {
