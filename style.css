@@ -10,6 +10,10 @@
     --open-screen-animation-time: 3000ms;
 }
 
+html {
+    font-size: calc(15px + 0.390625vw);
+}
+
 .field {
     border: 5px solid var(--open-screen-text-color);
     height: var(--field-height);
@@ -114,7 +118,7 @@
     /* width: 12vw; */
     /* left: 80vw; */
     font-weight: bold;
-    font-size: 4vh;
+    font-size: 1.5rem;
     padding: 0.5vw 1vw;
     flex-grow: 1;
     /* outline: 5px solid var(--open-screen-text-color); */
@@ -166,10 +170,11 @@
 
 .roundending {
     display: none;
-    margin: 10rem auto 0;
+    margin: 30vh auto 0;
     background-image: linear-gradient(90deg, var(--open-screen-background-start), var(--open-screen-background-end));
     width: 20%;
     border: 5px solid var(--open-screen-text-color);
+    transform: translateX(-7, 5vw);
 }
 
 .option {
@@ -177,7 +182,7 @@
     padding: 0.5rem 1rem;
     color: var(--open-screen-text-color);
     font-family: 'Caveat', cursive;
-    font-size: 3rem;
+    font-size: var(--button-font-size);
     cursor: pointer;
 }
 
@@ -199,18 +204,19 @@
     background-image: linear-gradient(90deg, var(--open-screen-background-start), var(--open-screen-background-end));
     width: 20%;
     border: 5px solid var(--open-screen-text-color);
-    margin: 25vh auto 0;
+    margin: 20vh auto 0;
 }
 
 .endscore {
     color: var(--open-screen-text-color);
     font-family: 'Caveat', cursive;
-    font-size: 4vh;
-    padding: 1rem;
+    font-size: var(--button-font-size);
+    padding: 0 1rem;
     font-weight: bold;
 }
 
 .endscore:first-child {
+    font-size: 1.6rem;
     align-self: center;
 }
 
@@ -253,5 +259,37 @@
 
     to {
         bottom: calc(-3 * var(--field-height) / 4);
+    }
+}
+
+@media screen and (max-width: 867px) {
+
+    .roundending,
+    .endscreen {
+        width: 32%;
+    }
+
+    .endscore:first-child {
+        font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 512px) {
+
+    .roundending,
+    .endscreen {
+        width: 40%;
+    }
+
+    .bar {
+        font-size: 1.3rem;
+    }
+
+    .endscore:first-child {
+        font-size: 1.4rem;
+    }
+
+    .endscore {
+        font-size: 1.7rem;
     }
 }

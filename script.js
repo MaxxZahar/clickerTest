@@ -92,7 +92,7 @@ function createCircle(container = field) {
 }
 
 function ending() {
-    const endOfGameDelay = 5000;
+    const endOfGameDelay = 150000;
     removeFieldListener();
     let currentLevel = localStorage.getItem("level");
     if (currentLevel == numberOfRounds) {
