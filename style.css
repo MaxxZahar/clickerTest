@@ -185,6 +185,7 @@ html {
     font-family: 'Caveat', cursive;
     font-size: var(--button-font-size);
     cursor: pointer;
+    user-select: none;
 }
 
 .option:first-child {
@@ -214,6 +215,7 @@ html {
     font-size: var(--button-font-size);
     padding: 0 1rem;
     font-weight: bold;
+    user-select: none;
 }
 
 .endscore:first-child {
