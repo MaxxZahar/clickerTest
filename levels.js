@@ -43,6 +43,18 @@ const levels = [{
     quantity: 10,
     interval: 500,
     longevity: 1500
+},
+{
+    level: 9,
+    quantity: 2,
+    interval: 5000,
+    longevity: 1000
+},
+{
+    level: 10,
+    quantity: 10,
+    interval: 400,
+    longevity: 1250
 }
 ];
 
