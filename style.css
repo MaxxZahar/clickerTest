@@ -61,7 +61,7 @@ html {
     width: 4rem;
     aspect-ratio: 1 / 1;
     cursor: pointer;
-    animation: scaling 2s linear;
+    animation: scaling 2s linear forwards;
 }
 
 .common {
