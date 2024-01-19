@@ -16,7 +16,7 @@ const continueButton = document.querySelector('.con');
 const endScreen = document.querySelector('.endscreen');
 const numberOfRounds = levels.length;
 let scoreCount = 0;
-// let errorCount = 0;
+let roundFine = 1;
 let circleCount = 0;
 let circleLongevity = 1000;
 let circleQuantity = 5;
@@ -78,7 +78,7 @@ function createCircle(container = field) {
             mutation.removedNodes.forEach(function (removedNode) {
                 if (removedNode === circle && currentScore === scoreCount) {
                     // increaseError();
-                    increaseScore(-1);
+                    increaseScore(-roundFine);
                     observer.disconnect();
                 }
             });
@@ -136,12 +136,13 @@ function deleteElement(element) {
 function startGame() {
     let currentLevel = localStorage?.getItem("level") ?? 1;
     let recordScore = localStorage?.getItem("recordScore") ?? 0;
-    const { level, quantity, interval, longevity } = levelInitialization(currentLevel);
+    const { level, quantity, interval, longevity, fine } = levelInitialization(currentLevel);
     levelBar.textContent = `Level: ${level}`;
     recordBar.textContent = `Highest Score: ${recordScore}`;
     circleLongevity = longevity;
     circleQuantity = quantity;
     circleCount = 0;
+    roundFine = fine;
     setIntervalX(createCircle, interval, quantity);
 }
 
